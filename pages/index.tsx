@@ -1,7 +1,8 @@
 import React from 'react'
+import { Welcome } from '@components'
 
 export type HomeProps = {}
 
-export default function Home({}:	HomeProps) {
-  return <h1>Home</h1>
+export default function Home({}: HomeProps) {
+  return <Welcome name="Anton" />
 }
