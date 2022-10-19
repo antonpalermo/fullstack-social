@@ -4,7 +4,11 @@ import { Welcome, Layout } from '@components'
 export type HomeProps = {}
 
 export default function Home({}: HomeProps) {
-  return <Welcome name="Anton" />
+  return (
+    <div className="sm:container">
+      <Welcome name="Anton" />
+    </div>
+  )
 }
 
 Home.pageLayout = (page: ReactElement) => (

@@ -9,6 +9,16 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1.618rem',
+        sm: '2.618rem',
+        md: '4.236rem',
+        lg: '6.854rem',
+        xl: '11.089rem'
+      }
+    },
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans]
