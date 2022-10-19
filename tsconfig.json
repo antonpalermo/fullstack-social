@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@components": ["components/index.ts"],
+      "@styles": ["styles/global.css"],
       "@lib": ["lib/index.ts"],
       "@pages/*": ["pages/*"]
     },

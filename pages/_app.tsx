@@ -1,4 +1,6 @@
 import React, { ReactElement } from 'react'
+
+import '@styles'
 import { AppProps } from '@lib'
 
 export default function App({ Component, pageProps }: AppProps) {
