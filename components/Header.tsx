@@ -8,7 +8,9 @@ export type HeaderProps = {}
 export function Header({}: HeaderProps) {
   const HomeLink = () => (
     <Link href={{ pathname: '/' }} passHref>
-      <a className="font-semibold hover:text-blue-500">Fullstack Social</a>
+      <a className="space-x-1 font-semibold tracking-wide bg-black text-white px-4 py-2 rounded-md text-sm select-none">
+        _stack
+      </a>
     </Link>
   )
 
