@@ -7,6 +7,6 @@ export type NextPageLayout<P = {}, IP = P> = NextPage<P, IP> & {
   pageLayout?: (page: ReactElement) => ReactNode
 }
 
-export type AppProps = NextAppProps & {
-  Component: NextPageLayout
+export type AppProps<P = {}> = NextAppProps<P> & {
+  Component: NextPageLayout<P>
 }

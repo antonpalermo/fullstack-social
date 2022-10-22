@@ -4,6 +4,7 @@
     "paths": {
       "@components": ["components/index.ts"],
       "@styles": ["styles/global.css"],
+      "@prisma": ["prisma/prisma.ts"],
       "@lib": ["lib/index.ts"],
       "@pages/*": ["pages/*"]
     },

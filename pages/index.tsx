@@ -11,6 +11,4 @@ export default function Home({}: HomeProps) {
   )
 }
 
-Home.pageLayout = (page: ReactElement) => (
-  <Layout title="Fullstack Social">{page}</Layout>
-)
+Home.pageLayout = (page: ReactElement) => <Layout title="_stack">{page}</Layout>
