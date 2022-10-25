@@ -6,7 +6,8 @@
       "@styles": ["styles/global.css"],
       "@prisma": ["prisma/prisma.ts"],
       "@lib": ["lib/index.ts"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@feat/user": ["features/user/index.ts"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
