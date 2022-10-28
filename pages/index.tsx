@@ -1,17 +1,33 @@
 import React, { ReactElement } from 'react'
 
 import useSWR from 'swr'
-import { JSONContent } from '@tiptap/react'
+import {
+  EditorContent,
+  EditorOptions,
+  JSONContent,
+  useEditor
+} from '@tiptap/react'
 import { GetServerSideProps } from 'next'
 
 import { fetcher } from '@lib'
 
-import { Layout } from '@components'
+import { Card, Layout } from '@components'
 import { Editor } from '@feat/editor'
 import { Post } from '@prisma/client'
+import StarterKit from '@tiptap/starter-kit'
 
 export type HomeProps = {
   posts: Post[]
+}
+
+function Post({ content }: { content: JSONContent }) {
+  const editor = useEditor({
+    extensions: [StarterKit],
+    editable: false,
+    content
+  })
+
+  return <Card>{editor && <EditorContent editor={editor} />}</Card>
 }
 
 export default function Home({ posts }: HomeProps) {
@@ -30,7 +46,11 @@ export default function Home({ posts }: HomeProps) {
   return (
     <div className="sm:container">
       <Editor submit={onSubmit} />
-      {data && data.map(post => <div key={post.id}>{post.id}</div>)}
+      {data.map(post => (
+        <div key={post.id}>
+          <Post content={JSON.parse(post.data)} />
+        </div>
+      ))}
     </div>
   )
 }

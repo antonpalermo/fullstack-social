@@ -2,7 +2,8 @@ import React from 'react'
 import StarterKit from '@tiptap/starter-kit'
 
 import { Content, JSONContent, useEditor, EditorContent } from '@tiptap/react'
-import { Button } from '@components'
+import { Button, Card, Avatar } from '@components'
+import { useSession } from 'next-auth/react'
 
 export type EditorProps = {
   submit: (content: JSONContent) => void
@@ -17,9 +18,9 @@ export function Editor({ submit, content }: EditorProps) {
   })
 
   return (
-    <>
+    <Card>
       {editor && <EditorContent editor={editor} />}
       <Button onClick={() => submit(editor.getJSON())}>Post</Button>
-    </>
+    </Card>
   )
 }

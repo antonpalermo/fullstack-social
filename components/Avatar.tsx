@@ -10,11 +10,11 @@ export function Avatar({ src, size }: AvatarProps) {
   const resolveSize = (size: 'sm' | 'md' | 'lx'): string => {
     switch (size) {
       case 'lx':
-        return 'min-w-[93px] min-h-[93px]'
+        return 'w-[93px] w-[93px]'
       case 'md':
-        return 'min-w-[58px] min-h-[58px]'
+        return 'w-[58px] h-[58px]'
       case 'sm':
-        return 'min-w-[36px] min-h-[36px]'
+        return 'w-[36px] h-[36px]'
     }
   }
 
