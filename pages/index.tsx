@@ -1,12 +1,7 @@
 import React, { ReactElement } from 'react'
 
 import useSWR from 'swr'
-import {
-  EditorContent,
-  EditorOptions,
-  JSONContent,
-  useEditor
-} from '@tiptap/react'
+import { EditorContent, JSONContent, useEditor } from '@tiptap/react'
 import { GetServerSideProps } from 'next'
 
 import { fetcher } from '@lib'
@@ -32,7 +27,7 @@ function Post({ content }: { content: JSONContent }) {
 
 export default function Home({ posts }: HomeProps) {
   const { data, mutate } = useSWR<Post[]>('/api/post', fetcher, {
-    fallbackData: posts
+    fallbackData: posts,
   })
 
   async function onSubmit(content: JSONContent) {
@@ -45,12 +40,16 @@ export default function Home({ posts }: HomeProps) {
 
   return (
     <div className="sm:container">
-      <Editor submit={onSubmit} />
-      {data.map(post => (
-        <div key={post.id}>
-          <Post content={JSON.parse(post.data)} />
-        </div>
-      ))}
+      <div className="mb-3">
+        <Editor submit={onSubmit} />
+      </div>
+      <div className="space-y-3">
+        {data.map(post => (
+          <div key={post.id}>
+            <Post content={JSON.parse(post.data)} />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

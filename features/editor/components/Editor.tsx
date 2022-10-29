@@ -1,9 +1,9 @@
 import React from 'react'
 import StarterKit from '@tiptap/starter-kit'
+import Placeholder from '@tiptap/extension-placeholder'
 
 import { Content, JSONContent, useEditor, EditorContent } from '@tiptap/react'
-import { Button, Card, Avatar } from '@components'
-import { useSession } from 'next-auth/react'
+import { Button, Card } from '@components'
 
 export type EditorProps = {
   submit: (content: JSONContent) => void
@@ -13,7 +13,12 @@ export type EditorProps = {
 export function Editor({ submit, content }: EditorProps) {
   const editor = useEditor({
     autofocus: false,
-    extensions: [StarterKit],
+    extensions: [
+      StarterKit,
+      Placeholder.configure({
+        placeholder: "What's on your bright mind?"
+      })
+    ],
     content
   })
 
