@@ -1,15 +1,19 @@
-import React, { ReactElement } from 'react'
-
+import React from 'react'
 import useSWR from 'swr'
-import { EditorContent, JSONContent, useEditor } from '@tiptap/react'
-import { GetServerSideProps } from 'next'
-
-import { fetcher } from '@lib'
-
-import { Card, Layout } from '@components'
-import { Editor } from '@feat/editor'
-import { Post } from '@prisma/client'
 import StarterKit from '@tiptap/starter-kit'
+
+import {
+  EditorContent,
+  EditorEvents,
+  JSONContent,
+  useEditor
+} from '@tiptap/react'
+import { fetcher } from '@lib'
+import { Card, Layout } from '@components'
+import { Tiptap } from '@components/editor'
+
+import { Post } from '@prisma/client'
+import { GetServerSideProps } from 'next'
 
 export type HomeProps = {
   posts: Post[]
@@ -27,21 +31,17 @@ function Post({ content }: { content: JSONContent }) {
 
 export default function Home({ posts }: HomeProps) {
   const { data, mutate } = useSWR<Post[]>('/api/post', fetcher, {
-    fallbackData: posts,
+    fallbackData: posts
   })
 
-  async function onSubmit(content: JSONContent) {
-    const post = await fetcher('/api/post/create', {
-      method: 'POST',
-      body: JSON.stringify(content)
-    })
-    mutate(data, post)
+  function handleUpdate({ editor }: EditorEvents['update']) {
+    console.log(editor.getJSON())
   }
 
   return (
     <div className="sm:container">
       <div className="mb-3">
-        <Editor submit={onSubmit} />
+        <Tiptap editable={true} onUpdate={handleUpdate} />
       </div>
       <div className="space-y-3">
         {data.map(post => (
@@ -62,4 +62,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
 
-Home.pageLayout = (page: ReactElement) => <Layout title="_stack">{page}</Layout>
+Home.pageLayout = (page: React.ReactElement) => (
+  <Layout title="_stack">{page}</Layout>
+)
