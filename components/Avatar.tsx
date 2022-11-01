@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { HTMLAttributes } from 'react'
 import Image from 'next/image'
 
-export type AvatarProps = {
+export type AvatarProps = HTMLAttributes<HTMLDivElement> & {
   src: string
   size: 'sm' | 'md' | 'lx'
 }
 
-export function Avatar({ src, size }: AvatarProps) {
+export function Avatar({ className, src, size }: AvatarProps) {
   const resolveSize = (size: 'sm' | 'md' | 'lx'): string => {
     switch (size) {
       case 'lx':
@@ -20,7 +20,9 @@ export function Avatar({ src, size }: AvatarProps) {
 
   return (
     <div
-      className={`relative rounded-full overflow-hidden ${resolveSize(size)}`}
+      className={`${className} relative rounded-full overflow-hidden ${resolveSize(
+        size
+      )}`}
     >
       <Image src={src} layout="fill" alt="User's avatar" />
     </div>

@@ -20,7 +20,12 @@ export function Tiptap({ editable, content, onUpdate }: TiptapProps) {
     ],
     editable,
     content,
-    onUpdate: props => onUpdate(props)
+    onUpdate: props => onUpdate(props),
+    editorProps: {
+      attributes: {
+        class: 'prose prose-base focus:outline-none'
+      }
+    }
   })
 
   React.useEffect(() => {

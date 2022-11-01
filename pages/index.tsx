@@ -10,7 +10,7 @@ import {
 } from '@tiptap/react'
 import { fetcher } from '@lib'
 import { Card, Layout } from '@components'
-import { Tiptap } from '@components/editor'
+import { Editor, Tiptap } from '@components/editor'
 
 import { Post } from '@prisma/client'
 import { GetServerSideProps } from 'next'
@@ -41,7 +41,7 @@ export default function Home({ posts }: HomeProps) {
   return (
     <div className="sm:container">
       <div className="mb-3">
-        <Tiptap editable={true} onUpdate={handleUpdate} />
+        <Editor />
       </div>
       <div className="space-y-3">
         {data.map(post => (
