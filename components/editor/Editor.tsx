@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useSession } from 'next-auth/react'
-import { EditorEvents } from '@tiptap/react'
+import { Content, EditorEvents } from '@tiptap/react'
 
 import { Avatar, Button } from '@components'
 import { Tiptap } from '@components/editor'
@@ -9,11 +9,21 @@ import { Tiptap } from '@components/editor'
 export type EditorProps = {}
 
 export function Editor({}: EditorProps) {
+  const [content, setContent] = React.useState<Content>({})
+
   const { data, status } = useSession()
   const loading = data && status !== 'loading'
 
+  async function hanleSubmit() {
+    const response = await fetch('/api/post/create', {
+      method: 'POST',
+      body: JSON.stringify(content)
+    })
+    console.log(await response.json())
+  }
+
   function handleUpdate(props: EditorEvents['update']) {
-    console.log(props.editor)
+    setContent(props.editor.getJSON())
   }
 
   return (
@@ -26,7 +36,7 @@ export function Editor({}: EditorProps) {
       </div>
       <div className="w-full inline-flex items-center justify-between">
         <span>Sample</span>
-        <Button>Post</Button>
+        <Button onClick={hanleSubmit}>Post</Button>
       </div>
     </div>
   )

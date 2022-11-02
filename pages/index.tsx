@@ -34,10 +34,6 @@ export default function Home({ posts }: HomeProps) {
     fallbackData: posts
   })
 
-  function handleUpdate({ editor }: EditorEvents['update']) {
-    console.log(editor.getJSON())
-  }
-
   return (
     <div className="sm:container">
       <div className="mb-3">
