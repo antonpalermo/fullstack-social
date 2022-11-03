@@ -9,6 +9,7 @@ import { Tiptap } from '@components/editor'
 export type EditorProps = {}
 
 export function Editor({}: EditorProps) {
+  const [count, setCount] = React.useState()
   const [content, setContent] = React.useState<Content>({})
 
   const { data, status } = useSession()
@@ -19,10 +20,10 @@ export function Editor({}: EditorProps) {
       method: 'POST',
       body: JSON.stringify(content)
     })
-    console.log(await response.json())
   }
 
   function handleUpdate(props: EditorEvents['update']) {
+    setCount(props.editor.storage.characterCount.characters())
     setContent(props.editor.getJSON())
   }
 
@@ -34,8 +35,8 @@ export function Editor({}: EditorProps) {
           <Tiptap editable={true} onUpdate={handleUpdate} />
         </div>
       </div>
-      <div className="w-full inline-flex items-center justify-between">
-        <span>Sample</span>
+      <div className="w-full inline-flex items-center justify-end space-x-3">
+        <span className='text-sm font-semibold text-gray-500'>{count}/200</span>
         <Button onClick={hanleSubmit}>Post</Button>
       </div>
     </div>
