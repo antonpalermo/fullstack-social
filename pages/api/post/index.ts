@@ -6,7 +6,7 @@ type IncomingAPIRequest = Omit<NextApiRequest, 'method'> & {
 }
 
 async function handler(req: IncomingAPIRequest, res: NextApiResponse) {
-  const posts = await prisma.post.findMany()
+  const posts = await prisma.post.findMany({ include: { user: true } })
   if (req.method === 'GET') {
     return res.status(200).json(posts)
   }
