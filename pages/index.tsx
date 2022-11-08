@@ -2,31 +2,44 @@ import React from 'react'
 import useSWR from 'swr'
 import StarterKit from '@tiptap/starter-kit'
 
-import {
-  EditorContent,
-  EditorEvents,
-  JSONContent,
-  useEditor
-} from '@tiptap/react'
+import { EditorContent, useEditor } from '@tiptap/react'
 import { fetcher } from '@lib'
-import { Card, Layout } from '@components'
-import { Editor, Tiptap } from '@components/editor'
+import { Avatar, Card, Layout } from '@components'
+import { Editor } from '@components/editor'
 
-import { Post } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import { GetServerSideProps } from 'next'
+
+type Post = Prisma.PostGetPayload<{
+  include: { user: { select: { name: true; image: true } } }
+}>
 
 export type HomeProps = {
   posts: Post[]
 }
 
-function Post({ content }: { content: JSONContent }) {
+type PostProps = {
+  post: Prisma.PostGetPayload<{
+    include: { user: { select: { name: true; image: true } } }
+  }>
+}
+
+function Post({ post }: PostProps) {
   const editor = useEditor({
     extensions: [StarterKit],
     editable: false,
-    content
+    content: JSON.parse(post.data)
   })
 
-  return <Card>{editor && <EditorContent editor={editor} />}</Card>
+  return (
+    <Card>
+      <div className="inline-flex items-center justify-start space-x-3">
+        <Avatar src={post.user.image} size="sm" />
+        <h3>{post.user.name}</h3>
+      </div>
+      {editor && <EditorContent editor={editor} />}
+    </Card>
+  )
 }
 
 export default function Home({ posts }: HomeProps) {
@@ -42,7 +55,7 @@ export default function Home({ posts }: HomeProps) {
       <div className="space-y-3">
         {data.map(post => (
           <div key={post.id}>
-            <Post content={JSON.parse(post.data)} />
+            <Post post={post} />
           </div>
         ))}
       </div>
