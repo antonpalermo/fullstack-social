@@ -8,6 +8,7 @@ import { Post } from '@components/post'
 
 import { Prisma } from '@prisma/client'
 import { GetServerSideProps } from 'next'
+import { Content } from '@tiptap/react'
 
 type Post = Prisma.PostGetPayload<{
   include: { user: { select: { name: true; image: true } } }
@@ -22,10 +23,20 @@ export default function Home({ posts }: HomeProps) {
     fallbackData: posts
   })
 
+  async function submit(content: Content) {
+    const response = await fetch('/api/post/create', {
+      method: 'POST',
+      body: JSON.stringify(content)
+    })
+
+    const post = await response.json()
+    mutate(data, post)
+  }
+
   return (
     <div className="sm:container">
       <div className="mb-3">
-        <Editor />
+        <Editor submit={submit} />
       </div>
       <div className="space-y-3">
         {data.map(post => (
