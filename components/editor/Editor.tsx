@@ -36,7 +36,7 @@ export function Editor({}: EditorProps) {
         </div>
       </div>
       <div className="w-full inline-flex items-center justify-end space-x-3">
-        <span className='text-sm font-semibold text-gray-500'>{count}/200</span>
+        <span className="text-sm font-semibold text-gray-500">{count}/200</span>
         <Button onClick={hanleSubmit}>Post</Button>
       </div>
     </div>

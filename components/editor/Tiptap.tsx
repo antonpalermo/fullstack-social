@@ -6,8 +6,8 @@ import CharacterCount from '@tiptap/extension-character-count'
 import { Content, EditorContent, EditorEvents, useEditor } from '@tiptap/react'
 
 export type TiptapProps = {
-  onUpdate: (props: EditorEvents['update']) => void
-  editable: boolean
+  onUpdate?: (props: EditorEvents['update']) => void
+  editable?: boolean
   content?: Content
 }
 
@@ -24,7 +24,7 @@ export function Tiptap({ editable, content, onUpdate }: TiptapProps) {
     ],
     editable,
     content,
-    onUpdate: props => onUpdate(props),
+    onUpdate,
     editorProps: {
       attributes: {
         class: 'prose prose-base focus:outline-none'
@@ -34,7 +34,8 @@ export function Tiptap({ editable, content, onUpdate }: TiptapProps) {
 
   React.useEffect(() => {
     editor?.setEditable(editable)
-  }, [editor, editable])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editable])
 
   return <EditorContent editor={editor} />
 }
