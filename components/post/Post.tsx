@@ -23,7 +23,7 @@ export function Post({ post }: PostProps) {
         <Avatar src={post.user.image} size="sm" />
         <h3>{post.user.name}</h3>
       </div>
-      <Tiptap editable={false} content={JSON.parse(post.data)} />
+      <Tiptap editable={false} content={post.data} />
       <button onClick={deletePost}>Delete</button>
     </Card>
   )
