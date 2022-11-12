@@ -1,12 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Post` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-DROP TABLE "Post";
-
 -- CreateTable
 CREATE TABLE "accounts" (
     "id" TEXT NOT NULL,
@@ -57,10 +48,22 @@ CREATE TABLE "verification_tokens" (
 CREATE TABLE "posts" (
     "id" TEXT NOT NULL,
     "data" TEXT NOT NULL,
+    "userId" TEXT,
     "dateCreated" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "dateUpdated" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "posts_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Comments" (
+    "id" TEXT NOT NULL,
+    "data" TEXT NOT NULL,
+    "postId" TEXT,
+    "dateCreated" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "dateUpdated" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Comments_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -81,8 +84,17 @@ CREATE UNIQUE INDEX "verification_tokens_identifier_token_key" ON "verification_
 -- CreateIndex
 CREATE UNIQUE INDEX "posts_id_key" ON "posts"("id");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Comments_id_key" ON "Comments"("id");
+
 -- AddForeignKey
 ALTER TABLE "accounts" ADD CONSTRAINT "accounts_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "posts" ADD CONSTRAINT "posts_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Comments" ADD CONSTRAINT "Comments_postId_fkey" FOREIGN KEY ("postId") REFERENCES "posts"("id") ON DELETE SET NULL ON UPDATE CASCADE;

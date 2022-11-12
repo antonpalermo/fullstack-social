@@ -1,45 +1,21 @@
 import React from 'react'
 import useSWR from 'swr'
-import StarterKit from '@tiptap/starter-kit'
 
-import { EditorContent, useEditor } from '@tiptap/react'
 import { fetcher } from '@lib'
-import { Avatar, Card, Layout } from '@components'
+import { Layout } from '@components'
 import { Editor } from '@components/editor'
+import { Post } from '@components/post'
 
 import { Prisma } from '@prisma/client'
 import { GetServerSideProps } from 'next'
+import { Content } from '@tiptap/react'
 
-type Post = Prisma.PostGetPayload<{
-  include: { user: { select: { name: true; image: true } } }
+type Post = Prisma.PostsGetPayload<{
+  include: { users: { select: { name: true; image: true } } }
 }>
 
 export type HomeProps = {
   posts: Post[]
-}
-
-type PostProps = {
-  post: Prisma.PostGetPayload<{
-    include: { user: { select: { name: true; image: true } } }
-  }>
-}
-
-function Post({ post }: PostProps) {
-  const editor = useEditor({
-    extensions: [StarterKit],
-    editable: false,
-    content: JSON.parse(post.data)
-  })
-
-  return (
-    <Card>
-      <div className="inline-flex items-center justify-start space-x-3">
-        <Avatar src={post.user.image} size="sm" />
-        <h3>{post.user.name}</h3>
-      </div>
-      {editor && <EditorContent editor={editor} />}
-    </Card>
-  )
 }
 
 export default function Home({ posts }: HomeProps) {
@@ -47,10 +23,23 @@ export default function Home({ posts }: HomeProps) {
     fallbackData: posts
   })
 
+  async function submit(content: Content) {
+    const response = await fetch('/api/post/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ data: content })
+    })
+
+    const post = await response.json()
+    mutate(data, post)
+  }
+
   return (
     <div className="sm:container">
       <div className="mb-3">
-        <Editor />
+        <Editor submit={submit} />
       </div>
       <div className="space-y-3">
         {data.map(post => (
