@@ -48,7 +48,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  posts         Post[]
+  posts         Posts[]
 
   @@map("users")
 }
@@ -62,10 +62,10 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-model Post {
+model Posts {
   id          String     @id @unique @default(cuid())
-  data        Json
-  user        User?      @relation(fields: [userId], references: [id])
+  data        String
+  users       User?      @relation(fields: [userId], references: [id])
   userId      String?
   comments    Comments[]
   dateCreated DateTime   @default(now())
@@ -76,8 +76,8 @@ model Post {
 
 model Comments {
   id          String   @id @unique @default(cuid())
-  data        Json
-  post        Post?    @relation(fields: [postId], references: [id])
+  data        String
+  posts       Posts?   @relation(fields: [postId], references: [id])
   postId      String?
   dateCreated DateTime @default(now())
   dateUpdated DateTime @updatedAt
