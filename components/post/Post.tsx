@@ -5,8 +5,8 @@ import { Avatar, Card } from '@components'
 import { mutate } from 'swr'
 
 export type PostProps = {
-  post: Prisma.PostGetPayload<{
-    include: { user: { select: { name: true; image: true } } }
+  post: Prisma.PostsGetPayload<{
+    include: { users: { select: { name: true; image: true } } }
   }>
 }
 
@@ -20,10 +20,10 @@ export function Post({ post }: PostProps) {
   return (
     <Card>
       <div className="inline-flex items-center justify-start space-x-3">
-        <Avatar src={post.user.image} size="sm" />
-        <h3>{post.user.name}</h3>
+        <Avatar src={post.users.image} size="sm" />
+        <h3>{post.users.name}</h3>
       </div>
-      <Tiptap editable={false} content={post.data} />
+      <Tiptap editable={false} content={JSON.parse(post.data)} />
       <button onClick={deletePost}>Delete</button>
     </Card>
   )

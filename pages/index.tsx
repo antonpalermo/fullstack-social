@@ -10,8 +10,8 @@ import { Prisma } from '@prisma/client'
 import { GetServerSideProps } from 'next'
 import { Content } from '@tiptap/react'
 
-type Post = Prisma.PostGetPayload<{
-  include: { user: { select: { name: true; image: true } } }
+type Post = Prisma.PostsGetPayload<{
+  include: { users: { select: { name: true; image: true } } }
 }>
 
 export type HomeProps = {
