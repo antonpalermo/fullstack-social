@@ -13,7 +13,7 @@ export function Header({}: HeaderProps) {
   )
 
   return (
-    <header className="sticky top-0 bg-white shadow">
+    <header className="sticky top-0 bg-white shadow z-50">
       <div className="container">
         <HContainer>
           <Brand />
