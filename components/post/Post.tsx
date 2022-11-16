@@ -3,6 +3,7 @@ import { Prisma } from '@prisma/client'
 import { Tiptap } from '@components/editor'
 import { Avatar, Card } from '@components'
 import { mutate } from 'swr'
+import { useSession } from 'next-auth/react'
 
 export type PostProps = {
   post: Prisma.PostsGetPayload<{
@@ -11,6 +12,9 @@ export type PostProps = {
 }
 
 export function Post({ post }: PostProps) {
+  const { data } = useSession()
+  const owned = post.userId === data.user.id
+
   async function deletePost() {
     const response = await fetch(`/api/post/delete?id=${post.id}`)
     console.log(await response.json())
@@ -23,8 +27,10 @@ export function Post({ post }: PostProps) {
         <Avatar src={post.users.image} size="sm" />
         <h3>{post.users.name}</h3>
       </div>
-      <Tiptap editable={false} content={JSON.parse(post.data)} />
-      <button onClick={deletePost}>Delete</button>
+      <div className="my-3">
+        <Tiptap editable={false} content={JSON.parse(post.data)} />
+      </div>
+      {owned && <button onClick={deletePost}>Delete</button>}
     </Card>
   )
 }
