@@ -12,8 +12,9 @@ export type PostProps = {
 }
 
 export function Post({ post }: PostProps) {
-  const { data } = useSession()
-  const owned = post.userId === data.user.id
+  const { data, status } = useSession()
+  const loading = status !== 'loading'
+  const owned = loading && post.userId === data.user.id
 
   async function deletePost() {
     const response = await fetch(`/api/post/delete?id=${post.id}`)
