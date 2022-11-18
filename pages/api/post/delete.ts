@@ -10,7 +10,7 @@ type IncomingAPIRequest = Omit<NextApiRequest, 'query'> & {
 async function handler(req: IncomingAPIRequest, res: NextApiResponse) {
   const { id } = req.query
 
-  const data = await prisma.post.delete({ where: { id } })
+  const data = await prisma.posts.delete({ where: { id } })
 
   // TODO: only delete your own post.
   return res.status(200).json(data)
