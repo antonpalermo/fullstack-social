@@ -1,2 +1,3 @@
-# fullstack-social
-A fullstack social app that you need
+# _stack
+
+Social media for awesome fullstack developers.
