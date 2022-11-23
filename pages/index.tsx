@@ -24,7 +24,7 @@ export default function Home({ posts }: HomeProps) {
   })
 
   async function submit(content: Content) {
-    const response = await fetch('/api/post/create', {
+    const response = await fetch('/api/posts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
