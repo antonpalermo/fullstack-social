@@ -1,10 +1,9 @@
+import { Avatar } from '../../../components/Avatar'
 import { useSession, signOut } from 'next-auth/react'
-import React from 'react'
-import { Avatar } from './Avatar'
 
 export type NavbarProps = {}
 
-export function Navbar({}: NavbarProps) {
+export default function Navbar({}: NavbarProps) {
   const { data, status } = useSession()
   const loading = data && status !== 'loading'
 

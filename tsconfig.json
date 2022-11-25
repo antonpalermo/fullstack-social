@@ -8,7 +8,9 @@
       "@styles": ["styles/global.css"],
       "@prisma": ["prisma/prisma.ts"],
       "@lib": ["lib/index.ts"],
-      "@pages/*": ["src/pages/*"]
+
+      "@pages/*": ["src/pages/*"],
+      "@ui/*": ["src/components/ui/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

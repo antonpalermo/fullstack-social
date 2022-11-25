@@ -1,9 +1,11 @@
 import { Prisma } from '@prisma/client'
 
 import { Tiptap } from '@components/editor'
-import { Avatar, Card } from '@components'
+import { Avatar } from '@components'
 import { mutate } from 'swr'
 import { useSession } from 'next-auth/react'
+
+import Card from '@ui/Card'
 
 export type PostProps = {
   post: Prisma.PostsGetPayload<{

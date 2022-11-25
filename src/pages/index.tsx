@@ -2,13 +2,14 @@ import React from 'react'
 import useSWR from 'swr'
 
 import { fetcher } from '@lib'
-import { Layout } from '@components'
 import { Editor } from '@components/editor'
 import { Post } from '@components/post'
 
 import { Prisma } from '@prisma/client'
 import { GetServerSideProps } from 'next'
 import { Content } from '@tiptap/react'
+
+import Layout from '@ui/Layout'
 
 type Post = Prisma.PostsGetPayload<{
   include: { users: { select: { name: true; image: true } } }
