@@ -6,7 +6,7 @@ export type AvatarProps = HTMLAttributes<HTMLDivElement> & {
   size: 'sm' | 'md' | 'lx'
 }
 
-export function Avatar({ className, src, size }: AvatarProps) {
+export default function Avatar({ className, src, size }: AvatarProps) {
   const resolveSize = (size: 'sm' | 'md' | 'lx'): string => {
     switch (size) {
       case 'lx':

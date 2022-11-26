@@ -5,10 +5,10 @@
       "@components": ["components/index.ts"],
       "@components/post": ["components/post/index.ts"],
       "@components/editor": ["components/editor/index.ts"],
-      "@styles": ["styles/global.css"],
       "@prisma": ["prisma/prisma.ts"],
       "@lib": ["lib/index.ts"],
-
+      
+      "@styles/*": ["src/styles/*"],
       "@pages/*": ["src/pages/*"],
       "@ui/*": ["src/components/ui/*"]
     },

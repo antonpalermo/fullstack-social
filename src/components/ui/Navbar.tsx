@@ -1,5 +1,6 @@
-import { Avatar } from '../../../components/Avatar'
 import { useSession, signOut } from 'next-auth/react'
+
+import Avatar from '@ui/Avatar'
 
 export type NavbarProps = {}
 

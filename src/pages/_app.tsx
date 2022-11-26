@@ -1,9 +1,10 @@
+import '@styles/global.css'
+
 import React, { ReactElement } from 'react'
 
 import { Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
 
-import '@styles'
 import { AppProps } from '@lib'
 
 export default function App({

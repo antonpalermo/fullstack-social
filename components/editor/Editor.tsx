@@ -3,8 +3,10 @@ import React from 'react'
 import { useSession } from 'next-auth/react'
 import { Content, EditorEvents } from '@tiptap/react'
 
-import { Avatar, Button } from '@components'
+import { Button } from '@components'
 import { Tiptap } from '@components/editor'
+
+import Avatar from '@ui/Avatar'
 
 export type EditorProps = {
   submit: (content: Content) => void

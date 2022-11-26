@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client'
 
 import { Tiptap } from '@components/editor'
-import { Avatar } from '@components'
+import Avatar from '@ui/Avatar'
 import { mutate } from 'swr'
 import { useSession } from 'next-auth/react'
 
