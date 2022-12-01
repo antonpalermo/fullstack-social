@@ -1,16 +1,17 @@
 import React from 'react'
 
 import { useSession } from 'next-auth/react'
-import { Content, EditorEvents } from '@tiptap/react'
+import { Content } from '@tiptap/react'
 
-import { Avatar, Button } from '@components'
-import { Tiptap } from '@components/editor'
+import Avatar from '@ui/Avatar'
+import Tiptap from '@ui/Tiptap'
+import Button from '@ui/Button'
 
 export type EditorProps = {
   submit: (content: Content) => void
 }
 
-export function Editor({ submit }: EditorProps) {
+export default function Editor({ submit }: EditorProps) {
   const [content, setContent] = React.useState<Content>({})
 
   const { data, status } = useSession()

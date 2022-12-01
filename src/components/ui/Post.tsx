@@ -1,9 +1,11 @@
 import { Prisma } from '@prisma/client'
 
-import { Tiptap } from '@components/editor'
-import { Avatar, Card } from '@components'
 import { mutate } from 'swr'
 import { useSession } from 'next-auth/react'
+
+import Card from '@ui/Card'
+import Avatar from '@ui/Avatar'
+import Tiptap from '@ui/Tiptap'
 
 export type PostProps = {
   post: Prisma.PostsGetPayload<{
@@ -11,7 +13,7 @@ export type PostProps = {
   }>
 }
 
-export function Post({ post }: PostProps) {
+export default function Post({ post }: PostProps) {
   const { data, status } = useSession()
   const loading = status !== 'loading'
   const owned = loading && post.userId === data.user.id

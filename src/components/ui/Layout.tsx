@@ -1,13 +1,13 @@
 import React, { HTMLAttributes } from 'react'
 
 import Head from 'next/head'
-import { Header } from '@components'
+import Header from '@ui/Header'
 
 export type LayoutProps = HTMLAttributes<HTMLDivElement> & {
   title?: string
 }
 
-export function Layout({ title, ...props }: LayoutProps) {
+export default function Layout({ title, ...props }: LayoutProps) {
   return (
     <>
       <Head>
