@@ -6,11 +6,10 @@
       "@components/post": ["components/post/index.ts"],
       "@components/editor": ["components/editor/index.ts"],
       "@prisma": ["prisma/prisma.ts"],
-      "@lib": ["lib/index.ts"],
-
       "@styles/*": ["src/styles/*"],
       "@pages/*": ["src/pages/*"],
-      "@ui/*": ["src/components/ui/*"]
+      "@ui/*": ["src/components/ui/*"],
+      "@utils/*": ["src/utils/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

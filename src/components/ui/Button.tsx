@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from 'react'
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {}
 
-export function Button({ className, ...props }: ButtonProps) {
+export default function Button({ className, ...props }: ButtonProps) {
   return (
     <button
       {...props}

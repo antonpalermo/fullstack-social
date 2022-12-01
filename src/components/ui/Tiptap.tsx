@@ -11,7 +11,7 @@ export type TiptapProps = {
   content?: any
 }
 
-export function Tiptap({ editable, content, onUpdate }: TiptapProps) {
+export default function Tiptap({ editable, content, onUpdate }: TiptapProps) {
   const editor = useEditor(
     {
       extensions: [

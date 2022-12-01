@@ -1,4 +1,4 @@
-export async function fetcher(input: RequestInfo | URL, init?: RequestInit) {
+export default async function fetcher(input: RequestInfo | URL, init?: RequestInit) {
   const response = await fetch(input, init)
 
   if (response.status >= 400) {
