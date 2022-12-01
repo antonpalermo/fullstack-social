@@ -4,7 +4,7 @@ import { options } from '../auth/[...nextauth]'
 import { unstable_getServerSession } from 'next-auth'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { prisma } from '@prisma'
+import { prisma } from '@utils/prisma'
 import { Prisma, Posts } from '@prisma/client'
 
 type IncomingAPIRequest = Omit<NextApiRequest, 'method' | 'body'> & {

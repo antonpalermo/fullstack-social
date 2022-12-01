@@ -5,7 +5,7 @@
       "@components": ["components/index.ts"],
       "@components/post": ["components/post/index.ts"],
       "@components/editor": ["components/editor/index.ts"],
-      "@prisma": ["prisma/prisma.ts"],
+      "@prisma": ["src/utils/prisma.ts"],
       "@styles/*": ["src/styles/*"],
       "@pages/*": ["src/pages/*"],
       "@ui/*": ["src/components/ui/*"],

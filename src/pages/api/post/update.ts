@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { prisma } from '@prisma'
+import { prisma } from '@utils/prisma'
 
 type IncomingAPIRequest = Omit<NextApiRequest, 'query' | 'method' | 'body'> & {
   method: 'PATCH'
