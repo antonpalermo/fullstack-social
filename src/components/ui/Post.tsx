@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react'
 import Card from '@ui/Card'
 import Avatar from '@ui/Avatar'
 import Tiptap from '@ui/Tiptap'
+import Button from '@ui/Button'
 
 export type PostProps = {
   post: Prisma.PostsGetPayload<{
@@ -33,7 +34,7 @@ export default function Post({ post }: PostProps) {
       <div className="my-3">
         <Tiptap editable={false} content={JSON.parse(post.data)} />
       </div>
-      {owned && <button onClick={deletePost}>Delete</button>}
+      {owned && <Button onClick={deletePost}>Delete</Button>}
     </Card>
   )
 }
