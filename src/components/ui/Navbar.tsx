@@ -1,8 +1,7 @@
 import { useSession, signOut } from 'next-auth/react'
 
 import Avatar from '@ui/Avatar'
-import Button from '@ui/Button'
-import { Menu, MenuButton, MenuItem, MenuItems } from '@ui/Menu'
+import { Menu, MenuButton, MenuItem, MenuItems, MenuSelect } from '@ui/Menu'
 
 export type NavbarProps = {}
 
@@ -18,7 +17,7 @@ export default function Navbar({}: NavbarProps) {
         </MenuButton>
         <MenuItems>
           <MenuItem>
-            <Button onClick={() => signOut()}>Sign Out</Button>
+            <MenuSelect onClick={() => signOut()}>Sign Out</MenuSelect>
           </MenuItem>
         </MenuItems>
       </Menu>

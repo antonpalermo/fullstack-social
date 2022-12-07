@@ -34,20 +34,23 @@ export function MenuItems({ children }: MenuProps) {
       leaveFrom="transform opacity-100 scale-100"
       leaveTo="transform opacity-0 scale-95"
     >
-      <HeadlessMenu.Items className="absolute origin-top-left">
+      <HeadlessMenu.Items className="bg-white w-56 absolute right-0 origin-top-right shadow-md rounded-md ">
         <div className="px-1 py-1">{children}</div>
       </HeadlessMenu.Items>
     </Transition>
   )
 }
 
-const menuSelectStyles = cva('w-full text-sm text-blue-500', {
-  variants: {
-    active: {
-      true: 'bg-blue-500 text-white'
+const menuSelectStyles = cva(
+  'w-full text-sm text-left font-medium px-3 py-1 text-blue-500 hover:text-white',
+  {
+    variants: {
+      active: {
+        true: 'bg-blue-500 rounded-md hover:text-white'
+      }
     }
   }
-})
+)
 
 export interface MenuSelectProps
   extends VariantProps<typeof menuSelectStyles>,
