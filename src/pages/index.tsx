@@ -43,7 +43,7 @@ export default function Home({ posts }: HomeProps) {
         <Editor submit={submit} />
       </div>
       <div className="space-y-3">
-        {data.map(post => (
+        {data && data.map(post => (
           <div key={post.id}>
             <Post post={post} />
           </div>

@@ -3,7 +3,6 @@ import React from 'react'
 import { useSession } from 'next-auth/react'
 import { Content } from '@tiptap/react'
 
-import Avatar from '@ui/Avatar'
 import Tiptap from '@ui/Tiptap'
 import Button from '@ui/Button'
 
@@ -20,7 +19,6 @@ export default function Editor({ submit }: EditorProps) {
   return (
     <div className="bg-white shadow p-4 leading-[0]">
       <div className="w-full mb-3 inline-flex items-start space-x-3">
-        <div>{loading && <Avatar src={data.user.image} size="sm" />}</div>
         <div className=" bg-gray-100 px-4 py-1 rounded-lg w-full overflow-hidden">
           <Tiptap
             editable={true}

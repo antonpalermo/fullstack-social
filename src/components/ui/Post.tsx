@@ -4,7 +4,6 @@ import { mutate } from 'swr'
 import { useSession } from 'next-auth/react'
 
 import Card from '@ui/Card'
-import Avatar from '@ui/Avatar'
 import Tiptap from '@ui/Tiptap'
 import Button from '@ui/Button'
 
@@ -28,7 +27,6 @@ export default function Post({ post }: PostProps) {
   return (
     <Card>
       <div className="inline-flex items-center justify-start space-x-3">
-        <Avatar src={post.users.image} size="sm" />
         <h3>{post.users.name}</h3>
       </div>
       <div className="my-3">
