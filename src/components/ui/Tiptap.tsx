@@ -28,7 +28,7 @@ export default function Tiptap({ editable, content, onUpdate }: TiptapProps) {
       onUpdate,
       editorProps: {
         attributes: {
-          class: 'prose prose-base focus:outline-none'
+          class: 'prose prose-base focus:outline-none px-10 py-2 min-h-[98px]'
         }
       }
     },
@@ -40,5 +40,5 @@ export default function Tiptap({ editable, content, onUpdate }: TiptapProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editable])
 
-  return <EditorContent editor={editor} />
+  return <>{editor && <EditorContent editor={editor} />}</>
 }

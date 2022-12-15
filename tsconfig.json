@@ -8,8 +8,10 @@
       "@prisma": ["src/utils/prisma.ts"],
       "@styles/*": ["src/styles/*"],
       "@pages/*": ["src/pages/*"],
+      "@utils/*": ["src/utils/*"],
+
       "@ui/*": ["src/components/ui/*"],
-      "@utils/*": ["src/utils/*"]
+      "@contents/*": ["src/components/contents/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

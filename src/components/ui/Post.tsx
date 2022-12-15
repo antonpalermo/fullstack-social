@@ -3,7 +3,6 @@ import { Prisma } from '@prisma/client'
 import { mutate } from 'swr'
 import { useSession } from 'next-auth/react'
 
-import Card from '@ui/Card'
 import Tiptap from '@ui/Tiptap'
 import Button from '@ui/Button'
 
@@ -25,7 +24,7 @@ export default function Post({ post }: PostProps) {
   }
 
   return (
-    <Card>
+    <>
       <div className="inline-flex items-center justify-start space-x-3">
         <h3>{post.users.name}</h3>
       </div>
@@ -33,6 +32,6 @@ export default function Post({ post }: PostProps) {
         <Tiptap editable={false} content={JSON.parse(post.data)} />
       </div>
       {owned && <Button onClick={deletePost}>Delete</Button>}
-    </Card>
+    </>
   )
 }

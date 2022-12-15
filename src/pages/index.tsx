@@ -7,10 +7,9 @@ import { Content } from '@tiptap/react'
 
 import Post from '@ui/Post'
 import Layout from '@ui/Layout'
-import Editor from '@ui/Editor'
+import Editor from '@contents/Editor'
+
 import fetcher from '@utils/fetcher'
-import { Card } from '@ui/Card'
-import Tiptap from '@ui/Tiptap'
 
 type Post = Prisma.PostsGetPayload<{
   include: { users: { select: { name: true; image: true } } }
@@ -40,17 +39,7 @@ export default function Home({ posts }: HomeProps) {
 
   return (
     <div className="sm:container">
-      <Card>
-        <Card.Header>
-          <h1>Sample Header</h1>
-        </Card.Header>
-        <Card.Content>
-          <h2>Card Contents</h2>
-        </Card.Content>
-        <Card.Footer>
-          <h2>Footer Content</h2>
-        </Card.Footer>
-      </Card>
+      <Editor onSubmit={submit} />
       <div className="space-y-3">
         {data &&
           data.map(post => (

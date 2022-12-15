@@ -12,7 +12,7 @@ export function CardRoot({ className, ...props }: CardProps) {
 }
 
 const headerStyles = cva(
-  'px-10 py-2 border-b border-opacity-50 border-slate-300',
+  'w-full inline-flex items-center space-x-2 px-10 py-3 border-b border-opacity-50 border-slate-300',
   {
     variants: {}
   }
@@ -26,7 +26,7 @@ function Header({ ...props }: HeaderProps) {
   return <div className={headerStyles()} {...props} />
 }
 
-const contentStyles = cva('px-10', { variants: {} })
+const contentStyles = cva('', { variants: {} })
 
 export interface ContentProps
   extends VariantProps<typeof contentStyles>,
@@ -37,7 +37,7 @@ function Content({ ...props }: ContentProps) {
 }
 
 const footerStyles = cva(
-  'px-10 py-2 border-t border-opacity-50 border-slate-300',
+  'px-10 py-3 border-t border-opacity-50 border-slate-300',
   {
     variants: {}
   }
