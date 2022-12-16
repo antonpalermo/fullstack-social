@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react'
 
 import Brand from '@ui/Brand'
-import Navbar from '@ui/Navbar'
 
 export type HeaderProps = {}
 
@@ -17,7 +16,6 @@ export default function Header({}: HeaderProps) {
       <div className="container">
         <HContainer>
           <Brand />
-          <Navbar />
         </HContainer>
       </div>
     </header>
