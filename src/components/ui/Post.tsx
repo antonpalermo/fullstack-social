@@ -7,8 +7,8 @@ import Tiptap from '@ui/Tiptap'
 import Button from '@ui/Button'
 
 export type PostProps = {
-  post: Prisma.PostsGetPayload<{
-    include: { users: { select: { name: true; image: true } } }
+  post: Prisma.PostGetPayload<{
+    include: { user: { select: { name: true; image: true } } }
   }>
 }
 
@@ -26,7 +26,7 @@ export default function Post({ post }: PostProps) {
   return (
     <>
       <div className="inline-flex items-center justify-start space-x-3">
-        <h3>{post.users.name}</h3>
+        <h3>{post.user.name}</h3>
       </div>
       <div className="my-3">
         <Tiptap editable={false} content={JSON.parse(post.data)} />

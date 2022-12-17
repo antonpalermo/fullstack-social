@@ -68,13 +68,13 @@ const handler = async (req: IncomingAPIRequest, res: NextApiResponse) => {
  * @returns newly created post data.
  */
 async function createPost(
-  { data }: IncomingRequestBody,
+  { data: body }: IncomingRequestBody,
   email: string
 ): Promise<{ data?: any | null; error?: { message: string } | null }> {
   try {
-    const post = await prisma.posts.create({
-      data: { data, users: { connect: { email } } },
-      include: { users: true }
+    const post = await prisma.post.create({
+      data: { body, user: { connect: { email } } },
+      include: { user: true }
     })
     return { data: post }
   } catch (error) {
@@ -94,8 +94,8 @@ async function updatePost(
   data: IncomingRequestBody
 ): Promise<{ data?: any | null; error?: { message: string } | null }> {
   try {
-    const post = await prisma.posts.update({ where: { id }, data })
-    return { data: post }
+    // const post = await prisma.post.update({ where: { id }, data })
+    // return { data: post }
   } catch (error) {
     console.log(error)
     return { error: { message: 'Unable to update post data.' } }
