@@ -4,9 +4,6 @@ import { options } from '../auth/[...nextauth]'
 import { unstable_getServerSession } from 'next-auth'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { prisma } from '@utils/prisma'
-import { Prisma, Posts } from '@prisma/client'
-
 type IncomingAPIRequest = Omit<NextApiRequest, 'method' | 'body'> & {
   method: 'POST'
   body: { data: string }
@@ -43,15 +40,7 @@ async function handler(req: IncomingAPIRequest, res: NextApiResponse) {
       return res.status(400).json({ message: error.message })
     }
 
-    const post = await prisma.posts.create({
-      data: {
-        data: validatedData,
-        users: { connect: { email: session.user.email } }
-      },
-      include: { users: true }
-    })
-
-    return res.status(201).json(post)
+    return res.status(201).json({ message: 'depricated' })
   } catch (error) {
     return res.status(500).end()
   }
