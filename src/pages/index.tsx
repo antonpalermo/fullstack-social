@@ -5,8 +5,9 @@ import { Prisma } from '@prisma/client'
 import { GetServerSideProps } from 'next'
 import { Content } from '@tiptap/react'
 
-import Post from '@ui/Post'
 import Layout from '@ui/Layout'
+
+import Post from '@contents/Post'
 import Editor from '@contents/Editor'
 
 import fetcher from '@utils/fetcher'
@@ -40,7 +41,7 @@ export default function Home({ posts }: HomeProps) {
   return (
     <div className="sm:container">
       <Editor onSubmit={submit} />
-      <div className="space-y-3">
+      <div className="mt-10 space-y-3">
         {data &&
           data.map(post => (
             <div key={post.id}>
