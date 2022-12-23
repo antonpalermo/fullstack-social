@@ -9,6 +9,7 @@ import Button from '@ui/Button'
 import { Card } from '@ui/Card'
 import { Prisma } from '@prisma/client'
 import { EditorContent, useEditor } from '@tiptap/react'
+import CommentInput from './CommentInput'
 
 type PostProps = {
   post: Prisma.PostGetPayload<{
@@ -48,9 +49,7 @@ export default function Post({ post }: PostProps) {
       </Card.Header>
       <Card.Content>{editor && <EditorContent editor={editor} />}</Card.Content>
       <Card.Footer>
-        <div className="w-full inline-flex items-center justify-end">
-          <Button>Comment</Button>
-        </div>
+        <CommentInput />
       </Card.Footer>
     </Card>
   )
