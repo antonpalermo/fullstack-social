@@ -49,6 +49,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
+  comments      Comment[]
 
   @@map("users")
 }
@@ -79,6 +80,8 @@ model Comment {
   body        String
   post        Post?    @relation(fields: [postId], references: [id])
   postId      String?
+  owner       User     @relation(fields: [ownerId], references: [id])
+  ownerId     String
   dateCreated DateTime @default(now())
   dateUpdated DateTime @updatedAt
 }

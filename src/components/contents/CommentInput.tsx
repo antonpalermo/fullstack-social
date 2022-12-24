@@ -26,7 +26,7 @@ export default function CommentInput() {
 
   return (
     <div className="flex w-full items-center">
-      {editor && <EditorContent editor={editor} />}
+      {editor && <EditorContent className="w-full" editor={editor} />}
       <Button>Comment</Button>
     </div>
   )
