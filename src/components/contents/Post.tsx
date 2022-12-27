@@ -8,7 +8,7 @@ import Button from '@ui/Button'
 
 import { Card } from '@ui/Card'
 import { Prisma } from '@prisma/client'
-import { EditorContent, useEditor } from '@tiptap/react'
+import { Content, EditorContent, useEditor } from '@tiptap/react'
 import CommentInput from './CommentInput'
 
 type PostProps = {
@@ -37,6 +37,15 @@ export default function Post({ post }: PostProps) {
     }
   })
 
+  async function comment(content: Content) {
+    const request = await fetch(`/api/post/${post.id}/comments`, {
+      method: 'POST',
+      body: JSON.stringify(content)
+    })
+    const comment = await request.json()
+    console.log(comment)
+  }
+
   return (
     <Card>
       <Card.Header>
@@ -49,7 +58,7 @@ export default function Post({ post }: PostProps) {
       </Card.Header>
       <Card.Content>{editor && <EditorContent editor={editor} />}</Card.Content>
       <Card.Footer>
-        <CommentInput />
+        <CommentInput comment={content => comment(content)} />
       </Card.Footer>
     </Card>
   )

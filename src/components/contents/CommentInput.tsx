@@ -1,11 +1,15 @@
-import { EditorContent, useEditor } from '@tiptap/react'
+import { Content, EditorContent, useEditor } from '@tiptap/react'
 
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import CharacterCount from '@tiptap/extension-character-count'
 import Button from '@ui/Button'
 
-export default function CommentInput() {
+export type CommentInputProps = {
+  comment: (content: Content) => void
+}
+
+export default function CommentInput({ comment }: CommentInputProps) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -27,7 +31,7 @@ export default function CommentInput() {
   return (
     <div className="flex w-full items-center">
       {editor && <EditorContent className="w-full" editor={editor} />}
-      <Button>Comment</Button>
+      <Button onClick={() => comment(editor.getJSON())}>Comment</Button>
     </div>
   )
 }
