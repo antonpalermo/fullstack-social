@@ -8,12 +8,34 @@ import Button from '@ui/Button'
 
 import { Card } from '@ui/Card'
 import { Prisma } from '@prisma/client'
-import { Content, EditorContent, useEditor } from '@tiptap/react'
-import CommentInput from './CommentInput'
+import { Content, EditorContent, JSONContent, useEditor } from '@tiptap/react'
+
+import Comment from '@contents/Comment'
+import CommentInput from '@contents/CommentInput'
 
 type PostProps = {
   post: Prisma.PostGetPayload<{
-    include: { user: { select: { name: true; image: true } } }
+    include: {
+      user: {
+        select: {
+          name: true
+          image: true
+        }
+      }
+      comments: {
+        select: {
+          id: true
+          body: true
+          owner: {
+            select: {
+              id: true
+              name: true
+              image: true
+            }
+          }
+        }
+      }
+    }
   }>
 }
 
@@ -58,6 +80,18 @@ export default function Post({ post }: PostProps) {
       </Card.Header>
       <Card.Content>{editor && <EditorContent editor={editor} />}</Card.Content>
       <Card.Footer>
+        {post.comments &&
+          post.comments.map(comment => (
+            <div
+              key={comment.id}
+              className="inline-flex items-center space-x-2"
+            >
+              <div className="relative w-9 h-9 rounded-full overflow-hidden">
+                <Image src={comment.owner.image} alt="user avatar" fill />
+              </div>
+              <Comment content={JSON.parse(comment.body)} />
+            </div>
+          ))}
         <CommentInput comment={content => comment(content)} />
       </Card.Footer>
     </Card>

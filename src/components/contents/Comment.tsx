@@ -6,7 +6,12 @@ export default function Comment(content: Content) {
   const editor = useEditor({
     extensions: [StarterKit],
     editable: false,
-    content
+    content,
+    editorProps: {
+      attributes: {
+        class: 'prose prose-base focus:outline-none px-10'
+      }
+    }
   })
 
   return <EditorContent editor={editor} />

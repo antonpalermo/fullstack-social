@@ -20,8 +20,8 @@ export default async function handler(
         owner: { connect: { email: session.user.email } }
       }
     })
-    console.log(comment)
-    return res.status(200).json({ message: 'ok' })
+
+    return res.status(200).json(comment)
   } catch (error) {
     return res.status(500).json({ error: 'error comment' })
   }

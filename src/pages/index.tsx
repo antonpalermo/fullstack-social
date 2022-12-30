@@ -13,7 +13,21 @@ import Editor from '@contents/Editor'
 import fetcher from '@utils/fetcher'
 
 type Post = Prisma.PostGetPayload<{
-  include: { user: { select: { name: true; image: true } } }
+  include: {
+    user: { select: { name: true; image: true } }
+    comments: {
+      select: {
+        id: true
+        body: true
+        owner: {
+          select: {
+            name: true
+            image: true
+          }
+        }
+      }
+    }
+  }
 }>
 
 export type HomeProps = {
