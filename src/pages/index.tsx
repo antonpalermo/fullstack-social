@@ -14,13 +14,19 @@ import fetcher from '@utils/fetcher'
 
 type Post = Prisma.PostGetPayload<{
   include: {
-    user: { select: { name: true; image: true } }
+    user: {
+      select: {
+        name: true
+        image: true
+      }
+    }
     comments: {
       select: {
         id: true
         body: true
         owner: {
           select: {
+            id: true
             name: true
             image: true
           }

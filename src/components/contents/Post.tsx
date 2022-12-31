@@ -62,7 +62,10 @@ export default function Post({ post }: PostProps) {
   async function comment(content: Content) {
     const request = await fetch(`/api/post/${post.id}/comments`, {
       method: 'POST',
-      body: JSON.stringify(content)
+      body: JSON.stringify(content),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
     const comment = await request.json()
     console.log(comment)
@@ -73,25 +76,26 @@ export default function Post({ post }: PostProps) {
       <Card.Header>
         <>
           <div className="relative w-9 h-9 rounded-full overflow-hidden">
-            <Image src={post.user.image} alt="user avatar" fill />
+            <Image src={post.user.image} alt="user avatar" fill sizes="36px" />
           </div>
           <h1 className="font-semibold text-slate-800">{post.user.name}</h1>
         </>
       </Card.Header>
       <Card.Content>{editor && <EditorContent editor={editor} />}</Card.Content>
       <Card.Footer>
-        {post.comments &&
-          post.comments.map(comment => (
+        <div className="space-y-2">
+          {post.comments.map(comment => (
             <div
               key={comment.id}
-              className="inline-flex items-center space-x-2"
+              className="w-full inline-flex items-center space-x-3"
             >
-              <div className="relative w-9 h-9 rounded-full overflow-hidden">
+              <div className="relative block w-9 h-9 rounded-full overflow-hidden">
                 <Image src={comment.owner.image} alt="user avatar" fill />
               </div>
-              <Comment content={JSON.parse(comment.body)} />
+              <Comment content={comment.body} />
             </div>
           ))}
+        </div>
         <CommentInput comment={content => comment(content)} />
       </Card.Footer>
     </Card>

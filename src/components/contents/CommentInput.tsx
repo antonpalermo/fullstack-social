@@ -29,7 +29,7 @@ export default function CommentInput({ comment }: CommentInputProps) {
   })
 
   return (
-    <div className="flex w-full items-center">
+    <div className="flex w-full items-center bg-slate-100 p-1 rounded-md pl-2 mt-2">
       {editor && <EditorContent className="w-full" editor={editor} />}
       <Button onClick={() => comment(editor.getJSON())}>Comment</Button>
     </div>

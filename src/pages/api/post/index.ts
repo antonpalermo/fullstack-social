@@ -10,7 +10,11 @@ async function handler(req: IncomingAPIRequest, res: NextApiResponse) {
     include: {
       user: { select: { name: true, image: true } },
       comments: {
-        select: { body: true, owner: { select: { name: true, image: true } } }
+        select: {
+          id: true,
+          body: true,
+          owner: { select: { name: true, image: true } }
+        }
       }
     }
   })

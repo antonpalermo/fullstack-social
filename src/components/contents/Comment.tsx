@@ -1,15 +1,28 @@
-import { Content, EditorContent, useEditor } from '@tiptap/react'
+import { EditorContent, useEditor } from '@tiptap/react'
 
 import StarterKit from '@tiptap/starter-kit'
 
-export default function Comment(content: Content) {
+type CommentProps = {
+  content: string
+}
+
+export default function Comment({ content }: CommentProps) {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [
+      StarterKit.configure({
+        heading: false,
+        paragraph: {
+          HTMLAttributes: {
+            class: 'text-sm font-medium'
+          }
+        }
+      })
+    ],
     editable: false,
-    content,
+    content: JSON.parse(content),
     editorProps: {
       attributes: {
-        class: 'prose prose-base focus:outline-none px-10'
+        class: 'prose prose-base focus:outline-none'
       }
     }
   })
