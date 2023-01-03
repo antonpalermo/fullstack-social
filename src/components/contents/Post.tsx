@@ -4,14 +4,13 @@ import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import CharacterCount from '@tiptap/extension-character-count'
 
-import Button from '@ui/Button'
-
 import { Card } from '@ui/Card'
 import { Prisma } from '@prisma/client'
 import { Content, EditorContent, JSONContent, useEditor } from '@tiptap/react'
 
 import Comment from '@contents/Comment'
 import CommentInput from '@contents/CommentInput'
+import { useSWRConfig } from 'swr'
 
 type PostProps = {
   post: Prisma.PostGetPayload<{
@@ -40,6 +39,8 @@ type PostProps = {
 }
 
 export default function Post({ post }: PostProps) {
+  const { mutate } = useSWRConfig()
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -60,15 +61,15 @@ export default function Post({ post }: PostProps) {
   })
 
   async function comment(content: Content) {
-    const request = await fetch(`/api/post/${post.id}/comments`, {
+    await fetch(`/api/post/${post.id}/comments`, {
       method: 'POST',
       body: JSON.stringify(content),
       headers: {
         'Content-Type': 'application/json'
       }
     })
-    const comment = await request.json()
-    console.log(comment)
+    
+    mutate('/api/post')
   }
 
   return (
