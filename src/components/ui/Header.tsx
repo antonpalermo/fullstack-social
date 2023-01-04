@@ -1,6 +1,9 @@
 import React, { ReactNode } from 'react'
 
 import Brand from '@ui/Brand'
+import Button from '@ui/Button'
+
+import { signOut } from 'next-auth/react'
 
 export type HeaderProps = {}
 
@@ -16,6 +19,7 @@ export default function Header({}: HeaderProps) {
       <div className="container">
         <HContainer>
           <Brand />
+          <Button onClick={() => signOut()}>Sign Out</Button>
         </HContainer>
       </div>
     </header>
